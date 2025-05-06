@@ -1,8 +1,9 @@
 # Password generator
 ```jsx
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 function App() {
+  // useState
   const [length , setLength] = useState(5);
   const [numbers , setNumbers] = useState(true);
   const [smallAlphabets , setSmallAlphabets] = useState(false);
@@ -10,6 +11,14 @@ function App() {
   const [specialCaracters , setSpecialCharacters] = useState(false);
   const [password , setPassword] = useState("");
 
+  // useRef
+  const passwordReference = useRef(null);
+  const copyPasswordToClipboard = useCallback(function(){
+    passwordReference.current?.select();
+    window.navigator.clipboard.writeText(password);
+  } , [password]);
+
+  // useCallback
   const passwordGenerator = useCallback(function(){
     let password = "";
     let str = "";
@@ -31,18 +40,19 @@ function App() {
       password = password + str.charAt(randomIndex);
     }
 
-    setPassword(password);
+    setPassword(password); // Set Password
   } , [length , numbers , smallAlphabets , capitalAlphabets , specialCaracters]);
 
+  // useEffect
   useEffect(function(){
-    passwordGenerator();
+    passwordGenerator(); // Function Call - Password Generator
   } , [length , numbers , smallAlphabets , capitalAlphabets , specialCaracters , passwordGenerator]);
 
   return (
     <>
       <div>
-        <input type="text"  value={password} placeholder="Password" readOnly></input>
-        <button>copy</button>
+        <input type="text"  value={password} placeholder="Password" readOnly ref={passwordReference}></input>
+        <button onClick={copyPasswordToClipboard}>copy</button>
       </div>
       <div>
         <p>Length : {length}</p>
@@ -61,5 +71,6 @@ function App() {
 }
 
 export default App
+
 
 ```
