@@ -18,19 +18,23 @@ function App() {
     setCount(count = 0);
   }
 
+  const btn = {
+    margin: "10px",
+    border: "2px solid black",
+  };
+
   return (
     <>
-      <div>Counter App</div>
-      <div>Count : {count}</div>
+      <h1>React Counter App</h1>
+      <div style={{fontSize:"30px"}}>Count : {count}</div>
       <div>
-        <div onClick={increaseCount}>+</div>
-        <div onClick={resetCount}>reset</div>
-        <div onClick={decreaseCount}>-</div>
+        <button style={btn} onClick={increaseCount}>+</button>
+        <button style={btn} onClick={resetCount}>↻</button>
+        <button style={btn} onClick={decreaseCount}>-</button>
       </div>
     </>
   )
 }
 
 export default App
-
 ```
