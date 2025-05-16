@@ -40,7 +40,7 @@ export const Form1 = () => {
     )
 ```
 
-- Form-1 Using Object
+- Form-2 Using Object
 ```jsx
 import { useState } from "react"
 
