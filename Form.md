@@ -38,6 +38,7 @@ export const Form1 = () => {
             </form>
         </>
     )
+}
 ```
 
 - Form-2 Using Object
@@ -86,5 +87,4 @@ export const Form2 = () => {
         </>
     )
 }
-
 ```
