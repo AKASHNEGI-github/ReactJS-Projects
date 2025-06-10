@@ -59,3 +59,60 @@ function App() {
 
 export default App
 ```
+
+- Dynamic Routing (II)
+
+```Layout.jsx
+import React from 'react'
+import Header from './Header'
+import Footer from './Footer'
+import { Outlet } from 'react-router-dom'
+
+function Layout(){
+    return(
+        <>
+            <Header/>
+            <Outlet/>
+            <Footer/>
+        </>
+    )
+}
+
+export default Layout
+```
+
+```App.jsx
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from'react-router-dom'
+import Layout from './Components/Layout'
+import Home from './Components/Home'
+import About from './Components/About'
+import Contact from './Components/Contact'
+import Error from './Components/Error'
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<Layout/>}>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/about' element={<About/>}/>
+      <Route path='/contact' element={<Contact/>}/>
+      <Route path='/*' element={<Error/>}/>
+    </Route>
+  )
+)
+
+function App() {
+  return (
+    <>
+      <RouterProvider router={router}/>
+    </>
+  )
+}
+
+export default App
+```
+
+
+
+
+
+
